@@ -1,7 +1,7 @@
 <div class="row" th:fragment="showRows">
     <div class="col-sm" th:each="b: ${book}">
         <div class="kachel">
-            <img th:src="${b.filepath}"/>
+            <img th:src="${b.filepath}" th:onclick="'showEditDlg('+ ${b.id} +')'"/>
             <b>Name</b> [[${b.name}]]
             <b>Ort</b>: [[${b.location}]]
 
@@ -19,6 +19,7 @@
             <div th:if="*{b.awarded!=null and #strings.length(b.awarded) > 0}">
                 <b>Verliehen</b>: [[${b.awarded}]]
             </div>
+
 
 
 
@@ -52,6 +53,10 @@
                     xmlHttp.open("GET", "/delete/"+b, true); // true for asynchronous
                     xmlHttp.send(null);
                 }
+            }
+
+            showEditDlg = function(b){
+                window.location.replace("/edit/"+b);
             }
         </script>
     </div>

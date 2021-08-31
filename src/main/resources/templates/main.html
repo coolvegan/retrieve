@@ -17,6 +17,11 @@
             <div th:replace="fragmente/showRows :: showRows"/>
         </div>
 
+        <div th:if="${edit}">
+            <div th:replace="fragmente/editform"/>
+        </div>
+
+
 
         <div th:if="${showAddNewElement}">
             <div th:replace="fragmente/uploadform :: uploadform"/>
