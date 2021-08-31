@@ -1,0 +1,8 @@
+
+
+<form class="form-inline" action="/upload" method="post"  enctype="multipart/form-data" th:fragment="uploadform">
+    <div class="form-group"><label for="name">Name:</label><input class="form-control" type="text" name="name" id="name" required autofocus/></div>
+    <div class="form-group"><label for="location">Ort:</label><input class="form-control" type="text" name="location" required id="location"/></div>
+    <div class="form-group"><label for="filepath">Image:</label><input class="form-control" type="file" name="filepath" required accept="images/jpeg" capture="user" id="filepath"/></div>
+    <input class="btn btn-default" type="submit"/>
+</form>

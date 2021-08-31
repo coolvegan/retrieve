@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmente/head.html :: head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav>
+            <a href="/"><button class="btn btn-secondary">Main</button></a>
+            <a href="/?option=showAddNewElement"><button class="btn btn-secondary">Hinzufügen</button></a>
+            <a href="/?option=showRows"><button class="btn btn-secondary">Zeige</button></a>
+        </nav>
+
+
+        <div th:if="${showRows}">
+            <div th:replace="fragmente/search"/>
+            <div th:replace="fragmente/showRows :: showRows"/>
+        </div>
+
+
+        <div th:if="${showAddNewElement}">
+            <div th:replace="fragmente/uploadform :: uploadform"/>
+        </div>
+
+
+    </div>
+</body>
+</html>

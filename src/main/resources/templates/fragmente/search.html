@@ -1,0 +1,11 @@
+<div class="form-group"><label for="suche">Suche:</label>
+    <input class="form-control" type="text" name="suche" id="suche" required autofocus th:onkeypress="test(event)"/>
+    <script>
+        test = function(e){
+            if (e.key == "Enter"){
+                var text = document.getElementById("suche").value;
+                window.location.replace("/?search="+text);
+            }
+        }
+    </script>
+</div>

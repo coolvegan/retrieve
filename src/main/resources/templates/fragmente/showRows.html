@@ -1,0 +1,58 @@
+<div class="row" th:fragment="showRows">
+    <div class="col-sm" th:each="b: ${book}">
+        <div class="kachel">
+            <img th:src="${b.filepath}"/>
+            <b>Name</b> [[${b.name}]]
+            <b>Ort</b>: [[${b.location}]]
+
+
+            <button class="btn btn-secondary" th:onclick="'deleteElement('+ ${b.id} +')'">
+                delete
+            </button>
+
+            <div th:if="*{b.awarded==null or #strings.length(b.awarded) == 0}">
+                <button class="btn btn-secondary" th:onclick="'awarded('+ ${b.id} +')'">
+                    verleihen
+                </button>
+            </div>
+
+            <div th:if="*{b.awarded!=null and #strings.length(b.awarded) > 0}">
+                <b>Verliehen</b>: [[${b.awarded}]]
+            </div>
+
+
+
+        </div>
+        <script>
+            awarded = function(b){
+                var person = prompt("An wen verleihen?", "");
+                var answer = window.confirm("Verleihen an "+person+" ?");
+                if (answer) {
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function() {
+                        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                        {
+                            window.location.replace("/");
+                        }
+                    }
+                    xmlHttp.open("GET", "/awarded/"+b+"?an="+person, true); // true for asynchronous
+                    xmlHttp.send(null);
+                }
+            }
+            deleteElement = function(b){
+                var answer = window.confirm("Löschen?");
+                if (answer) {
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.onreadystatechange = function() {
+                        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                        {
+                            window.location.replace("/");
+                        }
+                    }
+                    xmlHttp.open("GET", "/delete/"+b, true); // true for asynchronous
+                    xmlHttp.send(null);
+                }
+            }
+        </script>
+    </div>
+</div>
